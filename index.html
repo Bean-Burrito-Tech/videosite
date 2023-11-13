@@ -21,6 +21,32 @@
             <p id="currentVideo">No Video Loaded</p>
         </div>
         <video id="randomVideoPlayer" class="video" controls loop></video>
+        <div class="controls">
+            <!-- <button class="control-button" id="settingsbutton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-gear-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                </svg>
+            </button> -->
+            <a href="videos.html">
+                <button class="control-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-list-ul" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                    </svg>
+                </button>
+            </a>
+            <button class="control-button" id="copybutton" onclick="copyVideo()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-clipboard-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M10 1.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1Zm-5 0A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5v1A1.5 1.5 0 0 1 9.5 4h-3A1.5 1.5 0 0 1 5 2.5v-1Zm-2 0h1v1A2.5 2.5 0 0 0 6.5 5h3A2.5 2.5 0 0 0 12 2.5v-1h1a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3.5a2 2 0 0 1 2-2Z" />
+                </svg>
+            </button>
+            <p class="control-text" id="remainingText">N/A</p>
+        </div>
         <button onclick="newVideo()" class="button">New Video</button>
     </div>
 
@@ -29,10 +55,12 @@
     <script src="dist/iziToast/js/iziToast.min.js" type="text/javascript"></script>
 
     <script>
+        var videoPlayer = document.getElementById("randomVideoPlayer");
+        var currentVideo = document.getElementById("currentVideo");
+        var remainingText = document.getElementById("remainingText");
+
         async function newVideo() {
             try {
-                var videoPlayer = document.getElementById("randomVideoPlayer");
-                var currentVideo = document.getElementById("currentVideo");
 
                 await checkVideos()
 
@@ -61,17 +89,40 @@
 
                 var randomVideo = remainingVideos[Math.floor(Math.random() * remainingVideos.length)];
 
-                console.log(remainingVideos.length)
+                // console.log(remainingVideos.length)
 
                 videoPlayer.src = randomVideo;
                 videoPlayer.play();
 
-
                 currentVideo.textContent = `(#${videos.indexOf(randomVideo) + 1}) ${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
+                remainingText.textContent = `${remainingVideos.length}`
             } catch (error) {
                 console.error(error);
-                alert('An unexpected error occurred. Please try again.');
+                iziToast.show({
+                    title: 'Error',
+                    message: 'Something went wrong, please try again.',
+                    position: 'topRight',
+                    color: 'red'
+                });
             }
+        }
+
+        async function copyVideo() {
+            navigator.clipboard.writeText(videoPlayer.src).then(() => {
+                return iziToast.show({
+                    title: 'Success',
+                    message: 'Video successfully copied to clipboard!',
+                    position: 'topRight',
+                    color: 'green'
+                });
+            }, () => {
+                return iziToast.show({
+                    title: 'Error',
+                    message: 'Something went wrong trying to copy the video.',
+                    position: 'topRight',
+                    color: 'red'
+                });
+            });
         }
     </script>
 </body>

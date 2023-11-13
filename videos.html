@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video List</title>
+    <link rel="stylesheet" href="dist/iziToast/css/iziToast.min.css">
+
 </head>
 
 <body>
@@ -12,21 +14,18 @@
 
     </ul>
     <script src="js/videohandler.js"></script>
+    <script src="dist/iziToast/js/iziToast.min.js" type="text/javascript"></script>
+
 
     <script>
         var videosString = localStorage.getItem("videos");
 
         try {
-            await checkVideos()
+            checkVideos()
 
 
             if (videosString === null) {
-                return iziToast.show({
-                    title: 'Error',
-                    message: 'Something went wrong, please try again.',
-                    position: 'topRight',
-                    color: 'red'
-                });
+                alert('Something went wrong trying to get the videos list, try refreshing.')
             }
 
             var videodata = JSON.parse(videosString);

@@ -54,6 +54,36 @@ body {
     color: white;
 }
 
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.control-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    background-color: #333333;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.control-button:hover {
+    cursor: pointer;
+    background-color: #222222;
+}
+
+.control-text {
+    margin: 5px 5px;
+}
+
 .container {
     position: relative;
     display: flex;
