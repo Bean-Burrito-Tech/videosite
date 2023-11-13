@@ -67,8 +67,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     margin: 0 5px;
     background-color: #333333;
     border: none;
@@ -83,6 +83,7 @@ body {
 
 .control-text {
     margin: 5px 5px;
+    font-size: 18px;
 }
 
 .container {

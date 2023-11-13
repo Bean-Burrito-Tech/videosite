@@ -7,31 +7,24 @@
     <title>Bean Burrito Videos</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="dist/iziToast/css/iziToast.min.css">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
     <div class="container">
         <a href="https://beanburrito.tech" class="return">Return to BeanBurrito</a>
         <div style="text-align: center;">
-            <div style="display: flex; align-items: center;">
-                <!-- <img src="https://media.discordapp.net/attachments/1141562235722924145/1173492058498023454/image.png?ex=656426a5&is=6551b1a5&hm=d696143db24bbd0c56593cf7396f3e1d4eda903b53723fb99e2e2c6f501b1a71&="
-                    alt="Logo" width="50" height="50" style="padding-right: 4px;"> -->
+            <!-- <div style="display: flex; align-items: center;">
                 <h1>Bean Burrito Videos</h1>
-            </div>
+            </div> -->
             <p id="currentVideo">No Video Loaded</p>
         </div>
         <video id="randomVideoPlayer" class="video" controls loop></video>
         <div class="controls">
-            <!-- <button class="control-button" id="settingsbutton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-gear-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-                </svg>
-            </button> -->
             <a href="videos.html">
                 <button class="control-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                         class="bi bi-list-ul" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
                             d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
@@ -39,7 +32,7 @@
                 </button>
             </a>
             <button class="control-button" id="copybutton" onclick="copyVideo()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                     class="bi bi-clipboard-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                         d="M10 1.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1Zm-5 0A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5v1A1.5 1.5 0 0 1 9.5 4h-3A1.5 1.5 0 0 1 5 2.5v-1Zm-2 0h1v1A2.5 2.5 0 0 0 6.5 5h3A2.5 2.5 0 0 0 12 2.5v-1h1a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3.5a2 2 0 0 1 2-2Z" />
@@ -94,7 +87,8 @@
                 videoPlayer.src = randomVideo;
                 videoPlayer.play();
 
-                currentVideo.textContent = `(#${videos.indexOf(randomVideo) + 1}) ${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
+                // currentVideo.textContent = `(#${videos.indexOf(randomVideo) + 1}) ${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
+                currentVideo.textContent = `${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
                 remainingText.textContent = `${remainingVideos.length}`
             } catch (error) {
                 console.error(error);
@@ -106,7 +100,7 @@
                 });
             }
         }
-        
+
 
         async function copyVideo() {
             navigator.clipboard.writeText(videoPlayer.src).then(() => {
