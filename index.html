@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean Burrito Videos</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="dist/iziToast/css/iziToast.min.css">
 </head>
 
 <body>
@@ -21,26 +22,29 @@
         </div>
         <video id="randomVideoPlayer" class="video" controls loop></video>
         <button onclick="newVideo()" class="button">New Video</button>
+        <button onclick="test()" class="button">test</button>
+
     </div>
 
 
     <script src="js/videohandler.js"></script>
+    <script src="dist/iziToast/js/iziToast.min.js" type="text/javascript"></script>
 
     <script>
-        function newVideo() {
+        async function newVideo() {
             try {
                 var videoPlayer = document.getElementById("randomVideoPlayer");
                 var currentVideo = document.getElementById("currentVideo");
 
-                checkVideos()
+                await checkVideos()
 
                 var videosString = localStorage.getItem("videos");
 
-                if (videosString === null) {
+                var videos = JSON.parse(videosString) || ["https://raw.githubusercontent.com/Bean-Burrito-Tech/beanburrito-videos/main/car_magnet.mp4"];
+
+                if (videos === null) {
                     throw new Error('Something went wrong, try again.');
                 }
-
-                var videos = JSON.parse(videosString);
 
                 var watchedVideos = JSON.parse(localStorage.getItem('watchedVideos')) || [];
                 watchedVideos.push(videoPlayer.src)
@@ -70,6 +74,10 @@
                 console.error(error);
                 alert('An unexpected error occurred. Please try again.');
             }
+        }
+
+        async function test() {
+            console.log("hi")
         }
     </script>
 </body>

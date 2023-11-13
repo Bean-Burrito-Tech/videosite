@@ -17,11 +17,16 @@
         var videosString = localStorage.getItem("videos");
 
         try {
-            checkVideos()
+            await checkVideos()
 
 
             if (videosString === null) {
-                throw new Error('Something went wrong, try again.');
+                return iziToast.show({
+                    title: 'Error',
+                    message: 'Something went wrong, please try again.',
+                    position: 'topRight',
+                    color: 'red'
+                });
             }
 
             var videodata = JSON.parse(videosString);

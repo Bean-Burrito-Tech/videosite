@@ -3,21 +3,28 @@ const videos = []
 
 const refreshVideos = () => {
     fetch('https://api.github.com/repos/Bean-Burrito-Tech/beanburrito-videos/contents/')
-    .then(response => response.json())
-    .then(data => {
-        data.forEach(element => {
-            videos.push(element.download_url);
-        });
-    })
-    .then(() => {
-        const currentDate = new Date();
-        localStorage.setItem('lastRefresh', currentDate.toISOString());
-        localStorage.setItem('videos', JSON.stringify(videos));
-    })
-    .catch(error => console.error(error));
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(element => {
+                videos.push(element.download_url);
+            });
+        })
+        .then(() => {
+            const currentDate = new Date();
+            localStorage.setItem('lastRefresh', currentDate.toISOString());
+            localStorage.setItem('videos', JSON.stringify(videos));
+
+            iziToast.show({
+                title: 'Success',
+                message: 'Successfully refreshed videos! Next refresh is in an hour.',
+                position: 'topRight',
+                color: 'green'
+            });
+        })
+        .catch(error => console.error(error));
 }
 
-const checkVideos = () => {
+const checkVideos = async () => {
     const lastRefresh = localStorage.getItem('lastRefresh');
 
     if (lastRefresh === null)
@@ -25,10 +32,18 @@ const checkVideos = () => {
 
     const refreshDate = new Date(lastRefresh)
 
-    const threeDaysAgo = new Date();
-    threeDaysAgo.setDate(refreshDate.getDate() - 1);
+    const currentDate = new Date();
 
-    if (!(refreshDate.getTime() > threeDaysAgo.getTime())) {
+    let difference = currentDate.getTime() - refreshDate.getTime();
+    let hoursMilli = 1000 * 60 * 60; // milliseconds * seconds * minutes
+
+    if (!(Math.abs(difference) < hoursMilli)) {
+        iziToast.show({
+            title: 'Refresh',
+            message: 'Refreshing Videos...',
+            position: 'topRight',
+        });
         return refreshVideos();
+        // more than 1 hour ago
     }
 }
