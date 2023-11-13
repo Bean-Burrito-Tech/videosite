@@ -12,7 +12,7 @@
     <div class="container">
         <div style="text-align: center;">
             <h1>Bean Burrito Videos (BETA)</h1>
-            <p id="currentVideo">[0] N/A</p>
+            <p id="currentVideo">No Video Loaded</p>
         </div>
         <video id="randomVideoPlayer" class="video" controls loop></video>
         <button onclick="newVideo()" class="button">New Video</button>
@@ -23,24 +23,48 @@
 
     <script>
         function newVideo() {
-            checkVideos()
+            try {
+                var videoPlayer = document.getElementById("randomVideoPlayer");
+                var currentVideo = document.getElementById("currentVideo");
 
-            var videosString = localStorage.getItem("videos");
+                checkVideos()
 
-            if (videosString === null) {
-                return alert('Something went wrong, try again.')
+                var videosString = localStorage.getItem("videos");
+
+                if (videosString === null) {
+                    throw new Error('Something went wrong, try again.');
+                }
+
+                var videos = JSON.parse(videosString);
+
+                var watchedVideos = JSON.parse(localStorage.getItem('watchedVideos')) || [];
+                watchedVideos.push(videoPlayer.src)
+                localStorage.setItem('watchedVideos', JSON.stringify(watchedVideos));
+
+
+                var remainingVideos = videos.filter(function (video) {
+                    return !watchedVideos.includes(video);
+                });
+
+                if (remainingVideos.length === 0) {
+                    alert("You have watched every single video we have currently make sure to check back for more! In the meantime we will reset the videos you have watched.");
+                    localStorage.setItem('watchedVideos', JSON.stringify([]));
+                    return;
+                }
+
+                var randomVideo = remainingVideos[Math.floor(Math.random() * remainingVideos.length)];
+
+                console.log(remainingVideos.length)
+
+                videoPlayer.src = randomVideo;
+                videoPlayer.play();
+
+
+                currentVideo.textContent = `(#${remainingVideos.indexOf(randomVideo) + 1}) ${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
+            } catch (error) {
+                console.error(error);
+                alert('An unexpected error occurred. Please try again.');
             }
-
-            var videos = JSON.parse(videosString);
-            var randomVideo = videos[Math.floor(Math.random() * videos.length)];
-
-            var videoPlayer = document.getElementById("randomVideoPlayer");
-            videoPlayer.src = randomVideo;
-            videoPlayer.play();
-            var currentVideo = document.getElementById("currentVideo");
-
-
-            currentVideo.textContent = `[${videos.indexOf(randomVideo) + 1}] ${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
         }
     </script>
 </body>
