@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bean Burrito Videos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div style="text-align: center;">
+            <h1>Bean Burrito Videos (BETA)</h1>
+            <p id="currentVideo">[0] N/A</p>
+        </div>
+        <video id="randomVideoPlayer" class="video" controls loop></video>
+        <button onclick="newVideo()" class="button">New Video</button>
+    </div>
+
+
+    <script src="js/videohandler.js"></script>
+
+    <script>
+        function newVideo() {
+            checkVideos()
+
+            var videosString = localStorage.getItem("videos");
+
+            if (videosString === null) {
+                return alert('Something went wrong, try again.')
+            }
+
+            var videos = JSON.parse(videosString);
+            var randomVideo = videos[Math.floor(Math.random() * videos.length)];
+
+            var videoPlayer = document.getElementById("randomVideoPlayer");
+            videoPlayer.src = randomVideo;
+            videoPlayer.play();
+            var currentVideo = document.getElementById("currentVideo");
+
+
+            currentVideo.textContent = `[${videos.indexOf(randomVideo) + 1}] ${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+.video {
+    width: 50vw;
+    max-width: 100%;
+    height: 500px;
+    margin: 5px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.button {
+    width: 50vw;
+    height: 40px;
+    margin: 5px;
+    background-color: #333333;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #222222;
+}
+
+.button:active {
+    background-color: #111111;
+  }
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #1f1f1f;
+    font-family: sans-serif;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    background-color: #292828;
+    padding: 8px;
+    border-radius: 5px;
+}
