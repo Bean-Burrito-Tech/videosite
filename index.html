@@ -67,7 +67,7 @@
                 videoPlayer.play();
 
 
-                currentVideo.textContent = `(#${remainingVideos.indexOf(randomVideo) + 1}) ${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
+                currentVideo.textContent = `(#${videos.indexOf(randomVideo) + 1}) ${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
             } catch (error) {
                 console.error(error);
                 alert('An unexpected error occurred. Please try again.');
