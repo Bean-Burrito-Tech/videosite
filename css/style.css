@@ -7,6 +7,22 @@
     border-radius: 5px;
 }
 
+.return {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    color: white;
+}
+
+.return:hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    color: gainsboro;
+}
+
 .button {
     width: 50vw;
     height: 40px;
@@ -39,10 +55,11 @@ body {
 }
 
 .container {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 5px;
+    align-items: center; /* Align items to the center horizontally */
+    justify-content: center; /* Align items to the center vertically */
     background-color: #292828;
     padding: 8px;
     border-radius: 5px;

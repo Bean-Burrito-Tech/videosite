@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video List</title>
+</head>
+
+<body>
+    <ul>
+
+    </ul>
+    <script src="js/videohandler.js"></script>
+
+    <script>
+        var videosString = localStorage.getItem("videos");
+
+        try {
+            checkVideos()
+
+
+            if (videosString === null) {
+                throw new Error('Something went wrong, try again.');
+            }
+
+            var videodata = JSON.parse(videosString);
+
+            var videoList = document.querySelector('ul');
+
+            for (const video of videodata) {
+                var listItem = document.createElement('li');
+                var link = document.createElement('a');
+                link.href = video;
+                link.textContent = video.split('/')[6].split('.')[0].replace(/_/g, " ");
+                listItem.appendChild(link);
+                videoList.appendChild(listItem);
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An unexpected error occurred. Please try again.');
+        }
+    </script>
+</body>
+
+</html>
