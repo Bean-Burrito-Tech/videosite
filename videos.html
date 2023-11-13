@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video List</title>
     <link rel="stylesheet" href="dist/iziToast/css/iziToast.min.css">
-
+    <link rel="stylesheet" href="css/videos.css">
 </head>
 
 <body>
     <ul>
-
+        <h1>Bean Burrito Video List</h1>
+        <a href="index.html">Go Home</a>
     </ul>
     <script src="js/videohandler.js"></script>
     <script src="dist/iziToast/js/iziToast.min.js" type="text/javascript"></script>
@@ -36,9 +37,10 @@
                 var listItem = document.createElement('li');
                 var link = document.createElement('a');
                 link.href = video;
-                link.textContent = video.split('/')[6].split('.')[0].replace(/_/g, " ");
-                listItem.appendChild(link);
-                videoList.appendChild(listItem);
+                link.textContent = "⠀" + video.split('/')[6].split('.')[0].replace(/_/g, " ");
+                link.className = "li"
+                link.appendChild(listItem);
+                videoList.appendChild(link);
             }
         } catch (error) {
             console.error(error);
