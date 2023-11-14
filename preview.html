@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/preview.css">
 
     <title>Video Preview</title>
+
+    <meta content="Bean Burrito Videos" property="og:title" id="metaText">
+    <meta property='og:video' content='https://www.youtube.com/v/BQBjVr1iHH4' id="video" />
 </head>
 
 <body>
@@ -52,6 +55,10 @@
 
             videoPlayer.src = videoToPlay;
             download.href = videoToPlay;
+
+            // meta tags
+            document.getElementById('metaText').content = `Bean Burrito Videos - ${video.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
+            document.getElementById('video').content = videoToPlay;
         } catch (error) {
             console.error(error);
             alert('Something went wrong trying to get the videos list, try refreshing.');
