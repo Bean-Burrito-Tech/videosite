@@ -10,7 +10,7 @@
     <title>Video Preview</title>
 
     <meta content="Bean Burrito Videos" property="og:title" id="metaText">
-    <meta property='og:video' id="video" />
+    <meta property='og:video' content="" id="metaVideo" />
 </head>
 
 <body>
@@ -27,9 +27,9 @@
     <script>
         const videoPlayer = document.getElementById('video');
         const download = document.getElementById('download');
+
         const urlParams = new URLSearchParams(window.location.search);
         const video = urlParams.get('video');
-        var videosString = localStorage.getItem("videos");
 
         checkVideos()
 
@@ -38,27 +38,11 @@
                 window.location.replace("videos.html");
             }
 
-            if (videosString === null) {
-                alert('Something went wrong trying to get the videos list, try refreshing.')
-            }
+            document.getElementById("metaText").content = video.split('.')[0].replace(/_/g, " ");
+            document.getElementById("metaVideo").content = "https://raw.githubusercontent.com/Bean-Burrito-Tech/beanburrito-videos/main/" + video;
 
-            var videodata = JSON.parse(videosString);
-
-            // find video in videodata that ends with video
-            var videoToPlay = videodata.find(function (videoToFind) {
-                return videoToFind.endsWith(video);
-            });
-
-            if (videoToPlay === undefined) {
-                window.location.replace("videos.html");
-            }
-
-            videoPlayer.src = videoToPlay;
-            download.href = videoToPlay;
-
-            // meta tags
-            document.getElementById('metaText').content = `Bean Burrito Videos - ${videoToPlay.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
-            document.getElementById('video').content = videoToPlay;
+            videoPlayer.src = "https://raw.githubusercontent.com/Bean-Burrito-Tech/beanburrito-videos/main/" + video;
+            download.href = "https://raw.githubusercontent.com/Bean-Burrito-Tech/beanburrito-videos/main/" + video;
         } catch (error) {
             console.error(error);
             alert('Something went wrong trying to get the videos list, try refreshing.');
