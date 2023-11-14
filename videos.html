@@ -36,7 +36,7 @@
             for (const video of videodata) {
                 var listItem = document.createElement('li');
                 var link = document.createElement('a');
-                link.href = video;
+                link.href = `preview.html?video=${video.split('/')[6]}`;
                 link.textContent = "⠀" + video.split('/')[6].split('.')[0].replace(/_/g, " ");
                 link.className = "li"
                 link.appendChild(listItem);
