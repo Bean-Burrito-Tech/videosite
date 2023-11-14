@@ -87,14 +87,12 @@
 
                 var randomVideo = remainingVideos[Math.floor(Math.random() * remainingVideos.length)];
 
-                // console.log(remainingVideos.length)
-
                 videoPlayer.src = randomVideo;
                 videoPlayer.play();
 
                 // currentVideo.textContent = `(#${videos.indexOf(randomVideo) + 1}) ${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
                 currentVideo.textContent = `${randomVideo.split('/')[6].split('.')[0].replace(/_/g, " ")}`;
-                remainingText.textContent = `${remainingVideos.length}`
+                remainingText.textContent = `${remainingVideos.length - 1}`
             } catch (error) {
                 console.error(error);
                 iziToast.show({
