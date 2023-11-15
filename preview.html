@@ -8,11 +8,6 @@
     <link rel="stylesheet" href="css/preview.css">
 
     <title>Video Preview</title>
-<!-- 
-    <meta content="Bean Burrito Videos" property="og:title" id="metaText">
-    <meta property='og:video' content="" id="metaVideo" /> -->
-
-    <!-- set meta tags from the query string -->
 </head>
 
 <body>
@@ -37,9 +32,6 @@
             if (video === null) {
                 window.location.replace("videos.html");
             }
-
-            document.getElementById("metaText").content = video.split('.')[0].replace(/_/g, " ");
-            document.getElementById("metaVideo").content = "https://raw.githubusercontent.com/Bean-Burrito-Tech/beanburrito-videos/main/" + video;
 
             videoPlayer.src = "https://raw.githubusercontent.com/Bean-Burrito-Tech/beanburrito-videos/main/" + video;
             download.href = "https://raw.githubusercontent.com/Bean-Burrito-Tech/beanburrito-videos/main/" + video;
