@@ -132,7 +132,7 @@ body {
 
 #overlay {
     position: fixed;
-    top: 60px;
+    top: 10px;
     left: 70px;
     right: 70px;
     bottom: 10px;
@@ -156,3 +156,22 @@ body {
     width: auto;
     animation: spin 2s linear infinite;
 }
+
+.player-button {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    color: white;
+    border-radius: 100%;
+    min-width: 80px;
+    height: 80px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-button svg {
+    width: 50%;
+    height: 50%;
+    margin-left: 5%;
+  }

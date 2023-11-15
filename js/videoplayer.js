@@ -30,30 +30,14 @@ function togglePlayPause() {
         videoPlayer.pause();
     }
 }
+videoPlayer.addEventListener('play', hidePlayPauseButton);
 
-function showPlayPauseButton() {
-    playPauseButton.style.display = 'flex';
-}
+videoPlayer.addEventListener('pause', showPlayPauseButton);
 
-function hidePlayPauseButton() {
-    playPauseButton.style.display = 'none';
-}
+videoPlayer.addEventListener('loadeddata', hideLoadingIndicator);
+videoPlayer.addEventListener('canplay', hideLoadingIndicator);
 
-videoPlayer.addEventListener('play', function() {
-    hidePlayPauseButton();
-});
-
-videoPlayer.addEventListener('pause', function() {
-    showPlayPauseButton();
-});
-
-videoPlayer.addEventListener('loadeddata', function() {
-    hideLoadingIndicator();
-});
-
-videoPlayer.addEventListener('waiting', function() {
-    showLoadingIndicator();
-});
+videoPlayer.addEventListener('waiting', showLoadingIndicator);
 
 function showLoadingIndicator() {
     var loadingIndicator = document.getElementById('loadingIndicator');
@@ -65,7 +49,10 @@ function hideLoadingIndicator() {
     loadingIndicator.style.display = 'none';
 }
 
-// when a user goes to scrub and it loads account for when the video finishes loading and hide the indicator
-videoPlayer.addEventListener('canplay', function() {
-    hideLoadingIndicator();
-});
+function showPlayPauseButton() {
+    playPauseButton.style.display = 'flex';
+}
+
+function hidePlayPauseButton() {
+    playPauseButton.style.display = 'none';
+}
