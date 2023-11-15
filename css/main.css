@@ -8,6 +8,7 @@ body {
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
     touch-action: none;
+    background-color: #222222;
 }
 
 /* rotate entire webapge 180deg */
