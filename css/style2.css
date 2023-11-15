@@ -156,3 +156,56 @@ body {
     width: auto;
     animation: spin 2s linear infinite;
 }
+
+
+/* Settings */
+
+.settings {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-container {
+    width: 60vw;
+    height: 75vh;
+    background-color: #333333;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    z-index: 11;
+}
+
+.settings-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.settings-close:hover {
+    color: #d9d9d9;
+}
+
+.settings-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+.settings-contents {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
