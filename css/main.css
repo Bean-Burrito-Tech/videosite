@@ -6,6 +6,19 @@ body {
     font-family: Inter;
 }
 
+/* rotate entire webapge 180deg */
+html {
+    transform: rotate(0deg);
+    transform-origin: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* add background image */
+    background-image: url("https://i.imgur.com/5Xy9J3U.png");
+}
+
+
+
 .video {
     width: 100%;
     height: 100%;
@@ -191,3 +204,72 @@ body {
     transition: right 30s linear;
     z-index: 99;
 }
+
+/* Settings */
+
+.settings {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-container {
+    width: 60vw;
+    height: 75vh;
+    background-color: #292929;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    z-index: 11;
+}
+
+.settings-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.settings-close:hover {
+    color: #d9d9d9;
+}
+
+.settings-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+.settings-button {
+    background-color: #333333;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.settings-button:hover {
+    cursor: pointer;
+    background-color: #222222;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
