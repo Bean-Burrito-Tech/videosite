@@ -191,7 +191,9 @@
             e.preventDefault();
             if (!sliding) {
                 sliding = true;
-                alert('Uh oh... You summoned dark evil gavin')
+                alert('Uh oh... You summoned the dark evil gavin')
+
+                videoPlayer.muted = true;
 
                 var aris = document.getElementById("aris");
                 aris.style.right = '0';
