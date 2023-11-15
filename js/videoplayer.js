@@ -5,6 +5,10 @@ var blank = document.getElementById("blank");
 
 
 videoPlayer.addEventListener('timeupdate', () => {
+
+})
+
+setInterval(() => {
     const percent = (videoPlayer.currentTime / videoPlayer.duration) * 100;
     progressBar.style = `width: ${percent}%`;
 })
