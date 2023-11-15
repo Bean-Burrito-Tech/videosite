@@ -114,7 +114,8 @@ body {
     bottom: 0;
 }
 
-.progress-filled:hover, .progress:hover {
+.progress-filled:hover,
+.progress:hover {
     cursor: pointer;
 }
 
@@ -144,8 +145,13 @@ body {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .overlay-loading {
@@ -174,4 +180,14 @@ body {
     width: 50%;
     height: 50%;
     margin-left: 5%;
-  }
+}
+
+#aris {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100vw;
+    height: 100vh;
+    transition: right 30s linear;
+    z-index: 99;
+}
