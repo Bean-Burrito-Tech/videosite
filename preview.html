@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="css/preview.css">
 
     <title>Video Preview</title>
-
+<!-- 
     <meta content="Bean Burrito Videos" property="og:title" id="metaText">
-    <meta property='og:video' content="" id="metaVideo" />
+    <meta property='og:video' content="" id="metaVideo" /> -->
+
+    <!-- set meta tags from the query string -->
 </head>
 
 <body>
@@ -31,8 +33,6 @@
         const urlParams = new URLSearchParams(window.location.search);
         const video = urlParams.get('video');
 
-        checkVideos()
-
         try {
             if (video === null) {
                 window.location.replace("videos.html");
@@ -47,6 +47,7 @@
             console.error(error);
             alert('Something went wrong trying to get the videos list, try refreshing.');
         }
+        
     </script>
 </body>
 
