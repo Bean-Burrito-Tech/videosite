@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean Burrito Videos</title>
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
-    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="dist/iziToast/css/iziToast.min.css">
     <link href="https://fonts.googleapis.com/css?family=Inter&amp;display=swap" rel="stylesheet">
 
@@ -20,13 +19,16 @@
 </head>
 
 <body>
+    <img src="assets/aris.png" alt="Picture of Aristornus" id="aris">
     <div id="overlay">
         <div id="playPauseButton" class="player-button" onclick="togglePlayPause()" style="display: none; ">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-              </svg>
+                <path
+                    d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+            </svg>
         </div>
-        <img src="https://media.discordapp.net/attachments/1003531236570038434/1174101098672431215/image-removebg-preview.png" alt="Skibidi Gavin" id="loadingIndicator" class="overlay-loading" style="display: none;">
+        <img src="https://media.discordapp.net/attachments/1003531236570038434/1174101098672431215/image-removebg-preview.png"
+            alt="Skibidi Gavin" id="loadingIndicator" class="overlay-loading" style="display: none;">
     </div>
     <div class="controls" id="blank">
         <div class="top">
@@ -181,6 +183,23 @@
                 });
             });
         }
+
+        var sliding = false;
+
+        // detect right click
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            if (!sliding) {
+                sliding = true;
+                alert('Uh oh... You summoned dark evil gavin')
+
+                var aris = document.getElementById("aris");
+                aris.style.right = '0';
+
+                var audio = new Audio('assets/sliding_concrete.mp3');
+                audio.play();
+            }
+        });
     </script>
 </body>
 
