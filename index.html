@@ -28,6 +28,7 @@
 </head>
 
 <body>
+    <p id="volumeHud" class="dropshadow currentVideo sliderHud">100%</p>
     <img src="assets/aris.png" alt="Picture of Aristornus" id="aris">
     <div id="overlay">
         <div id="playPauseButton" class="player-button" onclick="togglePlayPause()" style="display: none; ">
@@ -41,7 +42,7 @@
     </div>
     <div class="controls" id="blank">
         <div class="top">
-            <p id="currentVideo" class="dropshadow">Click the + button or R key to load a new video.</p>
+            <p id="currentVideo" class="dropshadow currentVideo">Click the + button or R key to load a new video.</p>
         </div>
         <div class="left">
             <a href="https://beanburrito.tech">
@@ -127,6 +128,7 @@
         var videoPlayer = document.getElementById("randomVideoPlayer");
         var currentVideo = document.getElementById("currentVideo");
         var remainingText = document.getElementById("remainingText");
+        var volumeHud = document.getElementById("volumeHud");
 
         document.addEventListener('DOMContentLoaded', function () {
             var video = document.querySelector('.video');
@@ -271,6 +273,8 @@
             }
         });
 
+        var currentVolume = videoPlayer.volume;
+
         // get when the rotationSlider slider changes and the user lets go
         document.getElementById("rotationSlider").addEventListener('change', function () {
             var rotation = document.getElementById("rotationSlider").value;
@@ -278,6 +282,23 @@
             // set the rotation
             html.style.setProperty('transform', 'rotate(' + rotation + 'deg)');
         });
+
+        document.addEventListener('wheel', function (event) {
+            currentVolume += (event.deltaY > 0) ? -0.05 : 0.05;
+            currentVolume = Math.max(0, Math.min(1, currentVolume));
+            videoPlayer.volume = currentVolume;
+            event.preventDefault();
+        });
+
+        // get when videoPlayer volume changes
+        videoPlayer.addEventListener('volumechange', function () {
+            volumeHud.textContent = `${Math.round(videoPlayer.volume * 100)}%`;
+            volumeHud.style.opacity = 1;
+            setTimeout(function () {
+                volumeHud.style.opacity = 0;
+            }, 1500);
+        });
+
 
     </script>
 
